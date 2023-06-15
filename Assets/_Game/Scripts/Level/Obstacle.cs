@@ -6,12 +6,12 @@ public class Obstacle : MonoBehaviour, IHit
 {
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
 
     public void OnHit(Bullet bullet, Character character)
@@ -20,6 +20,15 @@ public class Obstacle : MonoBehaviour, IHit
     }
     public void OnHitExit(Bullet bullet, Character character)
     {
-        
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            // blur the material
+            transform.GetComponent<MeshRenderer>().material.SetFloat("_BlurSize", 1f);
+        }
     }
 }

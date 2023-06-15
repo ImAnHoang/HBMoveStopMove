@@ -41,6 +41,7 @@ public class Player : Character
                     if(timerWait>0.25)
                     {
                         Attack();
+                        AudioManager.Instance.PlaySFX("throw");
                     }
                 }
                 
@@ -55,10 +56,12 @@ public class Player : Character
                 if(!LevelManager.Instance.currentLevel.isWin)
                 {
                     ChangeAnim(Constant.ANIM_DEAD);
+                    AudioManager.Instance.PlaySFX("die");
                 }
                 else
                 {
                     ChangeAnim(Constant.ANIM_WIN);
+                    AudioManager.Instance.PlaySFX("win");
                 }
                 
             }
@@ -119,6 +122,7 @@ public class Player : Character
         listCharInAttact.Clear();
         ChangeAnim(Constant.ANIM_DEAD);
         base.OnDeath();
+        
         LevelManager.Instance.OnFinish();
         level.isWin = false;
     }

@@ -29,6 +29,7 @@ public class Lose : UICanvas
         UIManager.Instance.OpenUI<MainMenu>();
         DataPlayerController.AddCoin(DataPlayerController.coinInLevel);
         GameManagerr.Instance.ChangeState(EGameState.MainMenu);
+        AudioManager.Instance.StopPlay("die");
         LevelManager.Instance.LoadLevel(Data.Instance.GetLevel());
         Close();
     }
