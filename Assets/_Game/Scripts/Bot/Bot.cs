@@ -90,26 +90,12 @@ public class Bot : Character
     {
         Character target = null;
 
-        /*Random target*/
         int rand =Random.Range(0, chars.Count);
         if(chars[rand]!= this)
         {
             target = chars[rand];
         }
         return target;
-
-        //Find closest target
-        // float minDistance = Mathf.Infinity;
-        // for (int i =0; i< chars.Count; i++)
-        // {
-        //     if(chars[i]!= this && (Vector3.Distance(TF.position, chars[i].TF.position)< minDistance) )
-        //     {
-        //         target = chars[i];
-        //         minDistance = Vector3.Distance(TF.position, chars[i].TF.position);
-        //     }
-            
-        // }
-        // return target;
     }
 
 
@@ -146,8 +132,8 @@ public class Bot : Character
     public override void StopMoving()
     {
         agent.SetDestination(TF.position);
-        // agent.enabled = false;
-        //TODO: stop move
+        
+        
     }
     
    
