@@ -23,12 +23,4 @@ public class Obstacle : MonoBehaviour, IHit
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            // blur the material
-            transform.GetComponent<MeshRenderer>().material.SetFloat("_BlurSize", 1f);
-        }
-    }
 }

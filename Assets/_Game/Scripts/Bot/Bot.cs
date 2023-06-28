@@ -7,7 +7,7 @@ public class Bot : Character
 {
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform target;
-    private float speedBot=8;
+    private float speedBot=6;
     List<Character> chars => level.listCharacters;
     public Character Target => FindCharacterClosed();
     bool isDis= false;
@@ -90,12 +90,14 @@ public class Bot : Character
     {
         Character target = null;
 
+        /*Random target*/
         int rand =Random.Range(0, chars.Count);
         if(chars[rand]!= this)
         {
             target = chars[rand];
         }
         return target;
+
     }
 
 
@@ -132,8 +134,6 @@ public class Bot : Character
     public override void StopMoving()
     {
         agent.SetDestination(TF.position);
-        
-        
     }
     
    

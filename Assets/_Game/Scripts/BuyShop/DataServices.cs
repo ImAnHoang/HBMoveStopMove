@@ -79,15 +79,10 @@ public class DataServices
         SaveData();
         return current;
     }
-
     public ItemModel GetNextItem()
     {
         ItemModel current = dataRepository.GetNextItemId();
         SaveData();
         return current;
     }
-
-
-
-
 }

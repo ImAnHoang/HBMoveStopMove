@@ -76,7 +76,7 @@ public class Character : GameUnit, IHit
         this.attackArea.character = this;
     }
 
-    public virtual void SetSkin() // name, score, body material //TODO: HAT, PANT,...
+    public virtual void SetSkin() 
     {
         int index = Random.Range(0, BotDatasIns.BotName.Count);
         string name = BotDatasIns.BotName[index];
@@ -270,10 +270,6 @@ public class Character : GameUnit, IHit
         {
             FaceTarget(closed);
             ChangeAnim(Constant.ANIM_ATTACK);
-            // weapon.gameObject.SetActive(false);
-            // weapon.Attack();
-            // timerWait=0;
-            
 
         }
     }

@@ -14,7 +14,7 @@ public class Level : MonoBehaviour
     public bool isWin;
     public Vector3 sizeGround;
     float sizeObstacle;
-    float targetAmount=5; // So luong bot tren man hinh
+    float targetAmount=10; // So luong bot tren man hinh
     public float totalAmount; // So luong bot trong 1 level
     
     void Awake()

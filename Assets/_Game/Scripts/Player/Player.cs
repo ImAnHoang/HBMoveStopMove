@@ -41,7 +41,7 @@ public class Player : Character
                     if(timerWait>0.25)
                     {
                         Attack();
-                        AudioManager.Instance.PlaySFX("throw");
+                        AudioManager.Instance.PlaySFX("throw");  
                     }
                 }
                 

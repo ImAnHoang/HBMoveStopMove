@@ -27,7 +27,4 @@ public class Data:Singleton<Data>
     {
         return (Mathf.Abs(a * b) + a) % b;
     }
-
-
-   
 }
