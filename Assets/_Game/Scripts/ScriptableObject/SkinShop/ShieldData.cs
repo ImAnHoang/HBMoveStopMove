@@ -8,6 +8,6 @@ public class ShieldData
     
     public int indexItem;
     public GameObject prefab;
-    // Update is called once per frame
+
    
 }

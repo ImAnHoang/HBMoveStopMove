@@ -45,7 +45,6 @@ public class Lose : UICanvas
         DataPlayerController.AddCoin(DataPlayerController.coinInLevel);
         Data.Instance.SetLevel(1);
         LevelManager.Instance.LoadLevel(2);
-        // DataPlayerController.coinInLevel =0;
         Close();
 
     }

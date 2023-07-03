@@ -10,7 +10,7 @@ public class Boomerang : Bullet
     public override void OnInit()
     {
         base.OnInit();
-        // speedBullet= 6;
+        
     }
     private void Update()
     {
@@ -26,7 +26,7 @@ public class Boomerang : Bullet
         {
             IsDead= true;
             
-            //TODO: fix late
+            
             SimplePool.Despawn(this);
         }
     }

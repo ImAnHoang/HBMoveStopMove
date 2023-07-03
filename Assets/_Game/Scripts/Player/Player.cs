@@ -28,11 +28,11 @@ public class Player : Character
         {
             if(GameManagerr.Instance.IsState(EGameState.GamePlay))
             { 
-               if(!JoystickInput.Instance.isControl && !isAttack()) // Dung va co bot trong vung tan cong
+               if(!JoystickInput.Instance.isControl && !isAttack()) 
                 {
                     ChangeAnim(Constant.ANIM_IDLE);
                 }
-                else if(!JoystickInput.Instance.isControl && canAttack && isAttack() &&  level.IsExistChar(FindCharacterClosed())) // Dung va co the tan cong, co bot trong vung tan cong
+                else if(!JoystickInput.Instance.isControl && canAttack && isAttack() &&  level.IsExistChar(FindCharacterClosed())) 
                 {
                     StopMoving();
                     ChangeAnim(Constant.ANIM_ATTACK);
@@ -89,7 +89,6 @@ public class Player : Character
     void SetData()
     {
         
-        // float score = 0;
         EBodyMaterialType body = EBodyMaterialType.YELLOW;
         data?.SetBodyMaterial(body);
         skinnedMeshRenderer.material = data?.GetBodyMaterial();
@@ -144,5 +143,5 @@ public class Player : Character
         }
     }
 
-
+    
 }

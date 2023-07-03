@@ -21,16 +21,5 @@ public class BodyMaterialDatas : ScriptableObject
         return null;
     }
 
-    // public EBodyMaterialType GetEBodyMaterialType(Material material)
-    // {
-    //     for(int i =0; i< bodyMaterialDatas.Count; i++)
-    //     {
-    //         if(bodyMaterialDatas[i].material== material)
-    //         {
-    //             return bodyMaterialDatas[i].bodyType;
-    //         }
-    //     }
-       
-    // }
     
 }

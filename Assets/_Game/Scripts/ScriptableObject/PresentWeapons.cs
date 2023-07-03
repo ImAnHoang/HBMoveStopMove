@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "MoveStopMove/PresentWeapons")]
 public class PresentWeapons : ScriptableObject
 {
-    public List<PresentWeapon> listDataWeapons ;
+    public List<PresentWeapon> listDataWeapons;
 
     public int GetIndexTypeWeapon(PresentWeapon weapon)
     {
@@ -15,9 +15,9 @@ public class PresentWeapons : ScriptableObject
 
     public ShopWeaponElement GetPrefabWeapon(int index)
     {
-        for(int i =0; i< listDataWeapons.Count; i++)
+        for (int i = 0; i < listDataWeapons.Count; i++)
         {
-            if(listDataWeapons[i].indexTypeWeapon == index)
+            if (listDataWeapons[i].indexTypeWeapon == index)
             {
                 return listDataWeapons[i].weaponprefab;
             }
@@ -25,11 +25,11 @@ public class PresentWeapons : ScriptableObject
         return null;
     }
 
-     public ShopItemSelect GetPrefabItemSelect(int index)
+    public ShopItemSelect GetPrefabItemSelect(int index)
     {
-        for(int i =0; i< listDataWeapons.Count; i++)
+        for (int i = 0; i < listDataWeapons.Count; i++)
         {
-            if(listDataWeapons[i].indexTypeWeapon == index)
+            if (listDataWeapons[i].indexTypeWeapon == index)
             {
                 return listDataWeapons[i].itemselectPrefab;
             }

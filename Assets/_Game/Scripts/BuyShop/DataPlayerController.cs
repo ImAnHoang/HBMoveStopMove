@@ -31,13 +31,7 @@ public static class DataPlayerController
      private static DataServices shinData = new DataServices(KEY_SKIN, skinInit);
     private static List<DataServices> Listskin = new List<DataServices>{hatData,pantData,shieldData, shinData  };
 
-    // public static void InitData()
-    // {
-    //     weaponData?.InitDataServices();
-    //     hatData?.InitDataServices();
-    //     Debug.Log("skindata: "+ JsonUtility.ToJson(hatData));
-    //     coinData?.InitDataService();
-    // }
+
 
     public static UnityEvent updateCoinEvent = new UnityEvent();
     public static void SaveData()
@@ -86,7 +80,7 @@ public static class DataPlayerController
     public static void SetCurrentWeapon(int type, int index)
     {
         weaponData.SetCurrentItem(type, index);
-        SaveData(); //TODO CHECKBUG   
+        SaveData();  
     }
     
 
@@ -125,7 +119,7 @@ public static class DataPlayerController
     public static void SetCurrentSkin(int type, int index)
     {
         Listskin[type].SetCurrentItem(type, index);
-        SaveData(); //TODO CHECKBUG   
+        SaveData();   
     }
     public static ItemModel GetCurrentSkin(int type)
     {
@@ -133,29 +127,9 @@ public static class DataPlayerController
     }
     
 
-    // public static bool IsOwnedSkin(int type, int index, int factor)
-    // {
-    //      return hatData.IsOwnedItem(type, index, 100);
-    // }
-   
-
-    // public static ItemModel GetItemSkin()
-    // {
-    //     return hatData.GetCurrentItem();
-    // }
-
-    // public static ItemModel GetNextSkin()
-    // {
-    //     return hatData.GetNextItem();
-    // }
-    //   public static ItemModel GetPrevSkin()
-    // {
-    //     return hatData.GetPrevItem();
-    // }
-
     public static int GetCoin()
     {
-        Debug.Log("coin: "+ coinData.GetCoin());
+        
         return coinData.GetCoin();
     }
 

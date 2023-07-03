@@ -27,7 +27,7 @@ public class CoinService
     public void SaveData()
     {
         string data = JsonUtility.ToJson(coinData);
-        Debug.Log("data coin: "+ data);
+        
         PlayerPrefs.SetString(KEY_DATA, data);
         PlayerPrefs.Save();
     }

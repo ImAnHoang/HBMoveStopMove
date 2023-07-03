@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
+
 public class JoystickInput : Singleton<JoystickInput>
 {
      private Rigidbody _rigidbody;
@@ -22,9 +22,6 @@ public class JoystickInput : Singleton<JoystickInput>
         playerTF =  _rigidbody.transform;
     }
     
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
     
     private void FixedUpdate()
     {
@@ -36,10 +33,10 @@ public class JoystickInput : Singleton<JoystickInput>
                 this.gameObject.SetActive(true);
                 tfCenterJoystick.localPosition = Vector3.zero;
             }
-            // isMouse = !Input.GetMouseButtonUp(0);
+            
         }
         
-        else /*if (GameManagerr.Instance.IsState(EGameState.Pause) || GameManagerr.Instance.IsState(EGameState.Finish))*/
+        else 
         {
             this.gameObject.SetActive(false);
             isMouse = false;

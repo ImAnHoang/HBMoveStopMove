@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Indicator : GameUnit
 {
-    // [HideInInspector]
-   public  Character ownIndicator;
-    [SerializeField]private Transform target; // Target
+
+    public Character ownIndicator;
+    [SerializeField] private Transform target; // Target
     public GameObject followImage;
     public GameObject nameTxtObj;
     public Image scoreHolder;
@@ -21,21 +21,22 @@ public class Indicator : GameUnit
 
     private bool nameActivate;
     Vector3 screenPos;
-    [SerializeField]Vector3 viewPoint;
+    [SerializeField] Vector3 viewPoint;
     [SerializeField] Vector3 possiontion;
 
     Player player;
 
     void Update()
     {
-        if(GameManagerr.Instance.IsState(EGameState.GamePlay))
+        if (GameManagerr.Instance.IsState(EGameState.GamePlay))
         {
             followImage.gameObject.SetActive(true);
-        } else
+        }
+        else
         {
             followImage.gameObject.SetActive(false);
         }
-        if(target!=null)
+        if (target != null)
         {
             viewPoint = Camera.main.WorldToViewportPoint(target.position);
             possiontion = viewPoint;
@@ -44,22 +45,22 @@ public class Indicator : GameUnit
 
 
 
-            if (viewPoint.x < 0 || possiontion.x <0 ) /*&& possiontion.x >0)*/
+            if (viewPoint.x < 0 || possiontion.x < 0)
             {
                 viewPoint.x = 0.1f;
                 nameActivate = false;
             }
-            else if (viewPoint.x > 1 )
+            else if (viewPoint.x > 1)
             {
                 viewPoint.x = 0.9f;
                 nameActivate = false;
             }
-            if (viewPoint.y < 0) /*&& possiontion.y >-100) */ //Done
+            if (viewPoint.y < 0)  //Done
             {
                 viewPoint.y = 0.1f;
                 nameActivate = false;
             }
-            else if (viewPoint.y > 1 ||  possiontion.y <-100 )
+            else if (viewPoint.y > 1 || possiontion.y < -100)
             {
                 viewPoint.y = 0.95f;
                 nameActivate = false;
@@ -70,48 +71,48 @@ public class Indicator : GameUnit
             {
                 Arrow.gameObject.SetActive(false);
                 nameTxtObj.SetActive(true);
-                
+
             }
             else if (nameTxtObj.activeInHierarchy == true && !nameActivate)
             {
                 Arrow.gameObject.SetActive(true);
                 nameTxtObj.SetActive(false);
             }
-             Vector3 posFollowScreen = Camera.main.ViewportToScreenPoint(viewPoint);
-            if(!nameActivate)
+            Vector3 posFollowScreen = Camera.main.ViewportToScreenPoint(viewPoint);
+            if (!nameActivate)
             {
-                
-                 followImage.transform.position = new Vector2(posFollowScreen.x, posFollowScreen.y);
-                Vector3 dir = (viewPoint - new Vector3(0.5f, 0.5f,0));
-                dir.z =0;
+
+                followImage.transform.position = new Vector2(posFollowScreen.x, posFollowScreen.y);
+                Vector3 dir = (viewPoint - new Vector3(0.5f, 0.5f, 0));
+                dir.z = 0;
                 dir.Normalize();
-                if(viewPoint.y>0.945f)
+                if (viewPoint.y > 0.945f)
                 {
-                     ArrowTF.up = dir;
+                    ArrowTF.up = dir;
                 }
                 else
                 {
-                    ArrowTF.up = dir; 
+                    ArrowTF.up = dir;
                 }
-                
-                
+
+
             }
             else
             {
-                Vector3 pos2 = viewPoint  + new Vector3(0, 0.1f, 0);
+                Vector3 pos2 = viewPoint + new Vector3(0, 0.1f, 0);
                 Vector3 posFollowWorld2 = Camera.main.ViewportToWorldPoint(pos2);
                 Vector3 posFollowScreen2 = Camera.main.WorldToScreenPoint(posFollowWorld2);
                 followImage.transform.position = new Vector2(posFollowScreen2.x, posFollowScreen2.y);
-                followImage.transform.rotation =  Quaternion.identity;
+                followImage.transform.rotation = Quaternion.identity;
             }
-            
-            
+
+
         }
 
 
     }
 
-   
+
 
     public void SetOwnCharacter()
     {
@@ -122,12 +123,12 @@ public class Indicator : GameUnit
     }
     void SetTarget()
     {
-        target= ownIndicator.tf;
+        target = ownIndicator.tf;
     }
 
     public void SetScore()
     {
-        
+
         scoreTxt.text = ownIndicator?.data?.GetScore().ToString();
     }
 
@@ -139,7 +140,7 @@ public class Indicator : GameUnit
     public void SetMaterial()
     {
         indicatorMat = ownIndicator?.data?.GetBodyMaterial();
-        if(indicatorMat!= null)
+        if (indicatorMat != null)
         {
             nameTxt.color = indicatorMat.color;
             scoreHolder.color = indicatorMat.color;
@@ -148,7 +149,7 @@ public class Indicator : GameUnit
     }
     public Material GetMaterial()
     {
-        return  indicatorMat;
+        return indicatorMat;
     }
 
     public override void OnInit()

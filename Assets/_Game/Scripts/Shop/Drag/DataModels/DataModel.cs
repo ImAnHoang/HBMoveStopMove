@@ -14,7 +14,7 @@ public class DataModel
 
     public void AddItem(int id)
     {
-        if(!IsOwnedWithId(id)) 
+        if (!IsOwnedWithId(id))
         {
             return;
         }
@@ -23,7 +23,7 @@ public class DataModel
 
     public void SetCurrentItem(int current)
     {
-        currentItem= current;
+        currentItem = current;
     }
     public int GetCurrentItem()
     {
@@ -32,15 +32,15 @@ public class DataModel
 
     public int GetPrevItemId()
     {
-        int itemId =1;
+        int itemId = 1;
         int currentIndex = listItems.IndexOf(currentItem);
-        if(currentIndex ==0)
+        if (currentIndex == 0)
         {
-            itemId = listItems[listItems.Count-1];
+            itemId = listItems[listItems.Count - 1];
         }
         else
         {
-            itemId = listItems[currentIndex-1];
+            itemId = listItems[currentIndex - 1];
         }
         currentItem = itemId;
         return itemId;
@@ -48,9 +48,9 @@ public class DataModel
 
     public int GetNextItemId()
     {
-        int itemId =1;
+        int itemId = 1;
         int currentIndex = listItems.IndexOf(currentItem);
-        if(currentIndex ==3)
+        if (currentIndex == 3)
         {
             itemId = listItems[0];
         }
@@ -64,11 +64,11 @@ public class DataModel
 
     public void AddCoin(int value)
     {
-        this.coin+= value;
+        this.coin += value;
     }
-     public void SubCoin(int value)
+    public void SubCoin(int value)
     {
-        this.coin-= value;
+        this.coin -= value;
     }
 
     public int GetCoin()

@@ -25,11 +25,9 @@ public class Bot : Character
     }
 
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        // OnInit();
+
         Rigidbody rd = GetComponent<Rigidbody>();
         rd.velocity =Vector3.zero;
     }
@@ -48,7 +46,7 @@ public class Bot : Character
         {
             ChangeAnim(Constant.ANIM_IDLE);
             StopMoving();
-            // ChangeState(new IdleState());
+            
         }
     }
 
@@ -105,7 +103,6 @@ public class Bot : Character
     public override void Move()
     {   
         
-        // base.Move();
         isDis = true;
         if(isDis)
         {

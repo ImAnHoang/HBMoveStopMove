@@ -3,23 +3,22 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Character : GameUnit, IHit
 {
-    
+
     [Header("DATA")]
     public WeaponDatas weaponDatas;
     public CharacterData data;
-    
-   [Header("TRANSFORM")]
+
+    [Header("TRANSFORM")]
     public Transform weaponGenTF;
     public GameObject UnderObj;
-   [SerializeField] protected AttackArea attackArea;
-   [SerializeField] protected SkinnedMeshRenderer skinnedMeshRenderer;
-   [SerializeField] private Animator anim;
+    [SerializeField] protected AttackArea attackArea;
+    [SerializeField] protected SkinnedMeshRenderer skinnedMeshRenderer;
+    [SerializeField] private Animator anim;
 
     [Header("PREFAB")]
-    
+
     public Indicator indicatorprefab;
-    
-    //[HideInInspector] 
+
     public List<Character> listCharInAttact = new List<Character>();
     [HideInInspector]
     public Weapon weapon;
@@ -27,37 +26,31 @@ public class Character : GameUnit, IHit
     public Level level;
     [HideInInspector]
     public Vector3 dirAttact = Vector3.zero;
-     [HideInInspector]
+    [HideInInspector]
     public EWeaponType currentWeaponType;
-    
+
     [HideInInspector]
     public Indicator indicator;
     [HideInInspector]
     public bool IsDead;
-     
+
     [HideInInspector]
-    public bool IsAttack => listCharInAttact.Count>0;
-    // {
-    //     get 
-    //     {
-    //         return listCharInAttact.Count>0;
-    //     }
-    // }
-   
+    public bool IsAttack => listCharInAttact.Count > 0;
+
     private string currentAnimName;
-    
+
     private Dictionary<Weapon, Weapon> dictWeapon = new Dictionary<Weapon, Weapon>();
     private List<Weapon> listWeapon = new List<Weapon>();
     public float score = 0;
-    public int coinInLevel=0;
-    public float timerWait=0;
+    public int coinInLevel = 0;
+    public float timerWait = 0;
     void Start()
     {
-        tf= transform;
-        
+        tf = transform;
+
     }
 
-     public override void OnInit()
+    public override void OnInit()
     {
         IsDead = false;
         TF.localScale = Vector3.one;
@@ -76,7 +69,7 @@ public class Character : GameUnit, IHit
         this.attackArea.character = this;
     }
 
-    public virtual void SetSkin() 
+    public virtual void SetSkin()
     {
         int index = Random.Range(0, BotDatasIns.BotName.Count);
         string name = BotDatasIns.BotName[index];
@@ -92,7 +85,7 @@ public class Character : GameUnit, IHit
         indicator = SimplePool.Spawn<Indicator>(indicatorprefab);
         indicator.ownIndicator = this;
         indicator.OnInit();
-       
+
     }
 
     public virtual void SetWeapon()
@@ -100,7 +93,7 @@ public class Character : GameUnit, IHit
         SpawnWeapon();
     }
 
-    
+
     public override void OnDespawn()
     {
         indicator.OnDespawn();
@@ -111,10 +104,9 @@ public class Character : GameUnit, IHit
 
 
     public void DespawnWeapon()
-    {   
-        Weapon weaponPrefab = weaponDatas.GetWeaponPrefab(currentWeaponType);
-        // SimplePool.Despawn(this.bullet);
-        foreach(KeyValuePair<Weapon, Weapon> weapon in dictWeapon)
+    {
+
+        foreach (KeyValuePair<Weapon, Weapon> weapon in dictWeapon)
         {
             Destroy(weapon.Value.bullet);
             weapon.Value.gameObject.SetActive(false);
@@ -122,48 +114,46 @@ public class Character : GameUnit, IHit
     }
 
 
-    public virtual void OnDeath() //khi bi tieu dieu, goi ham OnDeath
+    public virtual void OnDeath() // die call OnDeath
     {
         StopMoving();
         UnderObj.SetActive(false);
         listCharInAttact.Clear();
         ChangeAnim(Constant.ANIM_DEAD);
         Invoke(nameof(OnDespawn), Constant.TIMER_DEATH);
-    
+
     }
-    
-    public void OnHit(Bullet bullet, Character character) 
+
+    public void OnHit(Bullet bullet, Character character)
     {
-        if(bullet.character!= this)
+        if (bullet.character != this)
         {
             bullet.OnDespawn();
             character.listCharInAttact.Remove(this);
             character.UnderObj.SetActive(false);
-            if(!this.IsDead)
+            if (!this.IsDead)
             {
                 this.IsDead = true;
                 level.DespawnChar(this);
                 AddScore(character);
                 character.Scale();
-                if(character is Player) 
+                if (character is Player)
                 {
-                    DataPlayerController.coinInLevel+= Constant.COIN_INCR;
+                    DataPlayerController.coinInLevel += Constant.COIN_INCR;
                 }
                 level.UpdateListChar();
                 level.CheckCountChar();
-                
+
             }
-            
-            
-        }  
+        }
     }
     public void OnHitExit(Bullet bullet, Character character)
     {
-        
+
     }
     public void ChangeAnim(string animName)
     {
-        if(currentAnimName != animName)
+        if (currentAnimName != animName)
         {
             anim.ResetTrigger(currentAnimName);
             currentAnimName = animName;
@@ -172,17 +162,17 @@ public class Character : GameUnit, IHit
     }
     public virtual void Move()
     {
-       
+
     }
     public virtual void StopMoving()
     {
-       
+
     }
     public void SpawnWeapon()
     {
-        currentWeaponType=  (EWeaponType) Random.Range(0, Constant.NUMBER_WEAPONS);
+        currentWeaponType = (EWeaponType)Random.Range(0, Constant.NUMBER_WEAPONS);
         Weapon weaponPrefab = weaponDatas.GetWeaponPrefab(currentWeaponType);
-        if(!dictWeapon.ContainsKey(weaponPrefab))
+        if (!dictWeapon.ContainsKey(weaponPrefab))
         {
             weapon = Instantiate(weaponPrefab, weaponGenTF);
             dictWeapon.Add(weaponPrefab, weapon);
@@ -195,10 +185,9 @@ public class Character : GameUnit, IHit
         }
         Vector3 postion = weaponGenTF.position;
         postion.y = weaponGenTF.position.y;
-        weapon.InitData( (int) currentWeaponType ,weapon.indexMat);
+        weapon.InitData((int)currentWeaponType, weapon.indexMat);
 
-        //TODO: cache transform
-        weapon.transform.position= postion; 
+        weapon.transform.position = postion;
         weapon.character = this;
         weapon.gameObject.SetActive(true);
     }
@@ -210,8 +199,8 @@ public class Character : GameUnit, IHit
         postion.y = weaponGenTF.position.y;
         weapon = Instantiate(weaponPrefab, weaponGenTF);
         weapon.indexMat = material;
-        weapon.InitData((int) currentWeaponType, weapon.indexMat);
-        weapon.transform.position= postion; 
+        weapon.InitData((int)currentWeaponType, weapon.indexMat);
+        weapon.transform.position = postion;
         weapon.character = this;
         weapon.gameObject.SetActive(true);
         return weapon;
@@ -220,39 +209,39 @@ public class Character : GameUnit, IHit
     public void Scale()
     {
         Vector3 scale = TF.localScale;
-        scale *= 1.07f;
+        scale = scale * 1.03f;
         TF.localScale = scale;
-        
+
     }
-   
-   public void FaceTarget(Character target)
+
+    public void FaceTarget(Character target)
     {
         level.UpdateListChar();
-        if(this.level.listCharacters.Contains(target))
+        if (this.level.listCharacters.Contains(target))
         {
             Vector3 position = target.TF.position;
             position.y = TF.position.y;
             Vector3 direction = (position - TF.position).normalized;
             TF.forward = direction;
-            dirAttact= direction;
-            tf.LookAt(target.tf.position + Vector3.up *( tf.position.y - target.tf.position.y));
-        }      
+            dirAttact = direction;
+            tf.LookAt(target.tf.position + Vector3.up * (tf.position.y - target.tf.position.y));
+        }
         else
         {
-            TF.forward= attackArea.transform.forward;
+            TF.forward = attackArea.transform.forward;
         }
     }
 
     public Character FindCharacterClosed()
     {
-        Character closedChar = null;
+        Character closedChar = null; 
         float distance = Mathf.Infinity;
         level.UpdateListChar();
-        for(int i =0; i<listCharInAttact.Count; i++)
+        for (int i = 0; i < listCharInAttact.Count; i++)
         {
-            if(this.level.listCharacters.Contains(listCharInAttact[i]))
+            if (this.level.listCharacters.Contains(listCharInAttact[i]))
             {
-                if(Vector3.Distance(TF.position, listCharInAttact[i].TF.position)< distance)
+                if (Vector3.Distance(TF.position, listCharInAttact[i].TF.position) < distance)
                 {
                     closedChar = listCharInAttact[i];
                 }
@@ -264,9 +253,9 @@ public class Character : GameUnit, IHit
 
     public void Throw()
     {
-       
+
         Character closed = FindCharacterClosed();
-        if( listCharInAttact.Count>0 && level.IsExistChar(closed))
+        if (listCharInAttact.Count > 0 && level.IsExistChar(closed))
         {
             FaceTarget(closed);
             ChangeAnim(Constant.ANIM_ATTACK);
@@ -278,25 +267,25 @@ public class Character : GameUnit, IHit
     {
         weapon.gameObject.SetActive(false);
         weapon.Attack();
-        timerWait=0;
+        timerWait = 0;
     }
 
     public EBodyMaterialType RandomBodyMat()
     {
-        EBodyMaterialType  body = EBodyMaterialType.YELLOW;
-        if(level!=null)
+        EBodyMaterialType body = EBodyMaterialType.YELLOW;
+        if (level != null)
         {
             int index = (int)Random.Range(0, (float)(level?.listBodyMaterialType.Count));
             body = level.listBodyMaterialType[index];
         }
-        return  body;
+        return body;
     }
 
     public virtual void InitData()
     {
         int index = Random.Range(0, BotDatasIns.BotName.Count);
         string name = BotDatasIns.BotName[index];
-        float score = Random.Range(0,5);
+        float score = Random.Range(0, 5);
         EBodyMaterialType body = RandomBodyMat();
         data?.SetBodyMaterial(body);
         skinnedMeshRenderer.material = data?.GetBodyMaterial();
@@ -306,21 +295,21 @@ public class Character : GameUnit, IHit
 
     public bool isAttack()
     {
-        for(int i =0; i<listCharInAttact.Count; i++)
+        for (int i = 0; i < listCharInAttact.Count; i++)
         {
-            if(!listCharInAttact[i].IsDead)
+            if (!listCharInAttact[i].IsDead)
             {
                 return true;
             }
         }
         return false;
     }
-    
+
     public void AddScore(Character character)
     {
         character.score++;
         character.data.SetScore(character.score);
         character.indicator.SetScore();
     }
-   
+
 }

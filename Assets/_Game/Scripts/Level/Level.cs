@@ -16,7 +16,7 @@ public class Level : MonoBehaviour
     float sizeObstacle;
     float targetAmount=10; // So luong bot tren man hinh
     public float totalAmount; // So luong bot trong 1 level
-    
+     
     void Awake()
     {
         if(sizeGround!=null)

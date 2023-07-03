@@ -46,7 +46,6 @@ public class Win : UICanvas
         GameManagerr.Instance.ChangeState(EGameState.MainMenu);
         DataPlayerController.AddCoin(DataPlayerController.coinInLevel);
         LevelManager.Instance.LoadLevel(Data.Instance.GetNextLevel());
-        // DataPlayerController.coinInLevel =0;
         Close();
     }
 

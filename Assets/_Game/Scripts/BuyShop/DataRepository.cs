@@ -7,7 +7,6 @@ public class DataRepository
     public DataRepository(int number, ItemModel item)
     {
         maxItem = number;
-        // currentItem = item;
        
         indexItem = item.indexItem;
         indexType = item.indexType;
@@ -22,10 +21,9 @@ public class DataRepository
     public ItemModel currentItem ; //khong save duoc
     #endregion
 
-    //Bien tam
+
     
 
-    #region  logic: check, add, getprev, getnext
     public bool IsOwnedWithId(int idTyp, int idIte, int factor=10)
     {
         return listItems.Contains(idTyp*factor+idIte);
@@ -93,7 +91,7 @@ public class DataRepository
 
     public ItemModel GetPrevItemId(int factor =10)
     {
-        ItemModel vitem =new ItemModel(indexType, indexItem);  //TODO: CHECK 0 or 1
+        ItemModel vitem =new ItemModel(indexType, indexItem);  
 
         int currentIndex = listItems.IndexOf(indexType*factor+  indexItem);
         if(currentIndex > 0)
@@ -109,7 +107,7 @@ public class DataRepository
 
     public ItemModel GetNextItemId(int factor =10)
     {
-        ItemModel vitem = new ItemModel(indexType, indexItem);  //TODO: CHECK 0 or 1
+        ItemModel vitem = new ItemModel(indexType, indexItem);  
         int currentIndex = listItems.IndexOf(indexType*factor+  indexItem);
         if(currentIndex < maxItem-1 )
         {
@@ -122,5 +120,4 @@ public class DataRepository
         currentItem = vitem;
         return vitem;
     }
-    #endregion
 }

@@ -10,5 +10,5 @@ public class SkinDataa
     public GameObject HatPrefab;
     public GameObject wingPrefab;
     public GameObject tailPrefab;
-    
+
 }

@@ -8,10 +8,10 @@ public class WeaponDatas : ScriptableObject
 
     public Weapon GetWeaponPrefab(EWeaponType eWeaponType)
     {
-        
-        for(int i =0; i< weapons.Count; i++)
+
+        for (int i = 0; i < weapons.Count; i++)
         {
-            if(weapons[i].weaponType == eWeaponType)
+            if (weapons[i].weaponType == eWeaponType)
             {
                 return weapons[i].weaponPrefab;
             }
@@ -21,9 +21,9 @@ public class WeaponDatas : ScriptableObject
 
     public Bullet GetBulletPrefab(EWeaponType eWeaponType)
     {
-        for(int i =0; i< weapons.Count; i++)
+        for (int i = 0; i < weapons.Count; i++)
         {
-            if(weapons[i].weaponType == eWeaponType)
+            if (weapons[i].weaponType == eWeaponType)
             {
                 return weapons[i].bulletPrefab;
             }

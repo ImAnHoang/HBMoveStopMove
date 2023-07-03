@@ -7,67 +7,67 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkinDataas", menuName = "")]
 public class SkinDataas : ScriptableObject
 {
-   [SerializeField] public List<SkinDataa> listData;
+    [SerializeField] public List<SkinDataa> listData;
 
-   public GameObject GetHatPrefab(int index)
-   {
-         for(int i =0; i<listData.Count; i++)
+    public GameObject GetHatPrefab(int index)
+    {
+        for (int i = 0; i < listData.Count; i++)
         {
-            if(listData[i].indexItem == index)
+            if (listData[i].indexItem == index)
             {
                 return listData[i].HatPrefab;
             }
         }
         return null;
-   }
+    }
 
     public GameObject GetTailPrefab(int index)
-   {
-         for(int i =0; i<listData.Count; i++)
+    {
+        for (int i = 0; i < listData.Count; i++)
         {
-            if(listData[i].indexItem == index)
+            if (listData[i].indexItem == index)
             {
                 return listData[i].tailPrefab;
             }
         }
         return null;
-   }
+    }
 
     public GameObject GetWingPrefab(int index)
-   {
-         for(int i =0; i<listData.Count; i++)
+    {
+        for (int i = 0; i < listData.Count; i++)
         {
-            if(listData[i].indexItem == index)
+            if (listData[i].indexItem == index)
             {
                 return listData[i].wingPrefab;
             }
         }
         return null;
-   }
+    }
 
     public Material GetSkinMaterial(int index)
     {
-        for(int i =0; i<listData.Count; i++)
-    {
-        if(listData[i].indexItem == index)
+        for (int i = 0; i < listData.Count; i++)
         {
-            return listData[i].SkinMaterial;
+            if (listData[i].indexItem == index)
+            {
+                return listData[i].SkinMaterial;
+            }
         }
-    }
-    return null;
+        return null;
 
     }
 
     public Material GetPantMaterial(int index)
     {
-        for(int i =0; i<listData.Count; i++)
-    {
-        if(listData[i].indexItem == index)
+        for (int i = 0; i < listData.Count; i++)
         {
-            return listData[i].PantMaterial;
+            if (listData[i].indexItem == index)
+            {
+                return listData[i].PantMaterial;
+            }
         }
-    }
-    return null;
+        return null;
 
     }
 }

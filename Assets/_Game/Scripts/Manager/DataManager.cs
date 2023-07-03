@@ -4,9 +4,5 @@ using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
 {
-    private void Awake() 
-    {
-        // DataPlayerController.InitData();
-    }
   
 }

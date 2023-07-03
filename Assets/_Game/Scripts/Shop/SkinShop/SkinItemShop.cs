@@ -12,7 +12,7 @@ public class SkinItemShop : MonoBehaviour
     [SerializeField] private GameObject lockObj;
     [SerializeField] private SkinShop skinShop;
     public int cost;
-     int num;
+    int num;
     void Awake()
     {
         skinShop = FindObjectOfType<SkinShop>();
@@ -22,23 +22,19 @@ public class SkinItemShop : MonoBehaviour
     }
     void Start()
     {
-        cost = ((int)indexType+1)*100 + indexItem*10;
+        cost = ((int)indexType + 1) * 100 + indexItem * 10;
     }
     void Select() // Chon tung item
     {
         PresentSkin.Instance.currentIndex = indexItem;
         PresentSkin.Instance.currentType = indexType;
         skinShop.moneyTxt.text = "$ " + cost;
-        // if(DataPlayerController.IsOwnedSkin((int)indexType, indexItem))
-        // {
-        //     PresentSkin.Instance.SpawnItem();
-        // }
 
         PresentSkin.Instance.UpdatePresent((int)indexType, indexItem);
     }
     void Update()
     {
-        if(DataPlayerController.IsOwnedSkin((int)indexType, indexItem))
+        if (DataPlayerController.IsOwnedSkin((int)indexType, indexItem))
         {
             lockObj.SetActive(false);
         }
@@ -49,14 +45,14 @@ public class SkinItemShop : MonoBehaviour
     }
 
     void UpdatePresent()
-    { 
-        if(PresentSkin.Instance.isUsed((int) indexType,  indexItem)) // Dang mang skin nay
+    {
+        if (PresentSkin.Instance.isUsed((int)indexType, indexItem)) // Dang mang skin nay
         {
             skinShop.EquippedActivate();
         }
-        else if(DataPlayerController.IsOwnedSkin((int) indexType,  indexItem) && !PresentSkin.Instance.isUsed((int) indexType,  indexItem) ) // Dang so huu
+        else if (DataPlayerController.IsOwnedSkin((int)indexType, indexItem) && !PresentSkin.Instance.isUsed((int)indexType, indexItem)) // Dang so huu
         {
-           skinShop.SelectActivate();
+            skinShop.SelectActivate();
         }
         else
         {
@@ -64,5 +60,5 @@ public class SkinItemShop : MonoBehaviour
         }
     }
 
-   
+
 }

@@ -15,7 +15,7 @@ public class PresentSkin : Singleton<PresentSkin>
     public bool isCurrent, isOwned, noHave;
     public GenSkin[] listGenSkin = new GenSkin[4];
     [SerializeField] private SkinShop skinShop;
-    // public bool[] isReSelect = new bool[3];
+ 
     private void Start() {
         
         currentType = ESkinType.Hat;
@@ -48,30 +48,10 @@ public class PresentSkin : Singleton<PresentSkin>
             for(int i =0; i<3; i++)
             {
                 DataPlayerController.SetCurrentSkin((int)i, -1); //Bo nhung cai hien tai cua tap truoc di
-                // isReSelect[i] = false; // set no ve false
+                
             }
 
         }
-        // else
-        // {
-        //     isReSelect[(int)currentType] = true; // con ko thi de la true
-        // }
-
-
-
-
-
-
-        // DataPlayerController.SetCurrentSkin((int)currentType, currentIndex);
-        // SpawnSaveItem();
-        
-
-        // if(!DataPlayerController.IsOwnedSkin((int)currentType, currentIndex))
-        // {
-            // DataPlayerController.AddSkin((int)currentType, currentIndex);
-        // }
-        // DataPlayerController.SetCurrentSkin((int)currentType, currentIndex);
-        // SpawnSaveItem();
     }
 
     public void EquippedItem()

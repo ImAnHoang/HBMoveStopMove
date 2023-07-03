@@ -8,33 +8,20 @@ public class CameraFollow : MonoBehaviour
     public Player player;
     public Vector3 offset;
     public float lerpRate;
-    // public bool gameOver;
-    
 
-    // Start is called before the first frame update
-    // void Start()
-    // {
-    //     gameOver = false;
-        
-    // }
     void Awake()
     {
         player = FindObjectOfType<Player>();
         TF= gameObject.transform;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if(player!= null)
         {
             Follow();
         }
-        
-        // if( !GameManagerr.Instance.IsState(EGameState.Finish)  )
-        // {
-        //     Follow();
-        // }
+
     }
 
     void Follow()

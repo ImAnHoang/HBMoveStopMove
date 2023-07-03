@@ -16,7 +16,6 @@ public class UpItem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             player.Scale();
-            
             player.AddScore(player);
             Destroy(gameObject);
         }

@@ -5,12 +5,11 @@ using UnityEngine;
 public class WeaponShop : UICanvas
 {
     [SerializeField] Player player;
-    private void Start() {
+    private void Start()
+    {
         player = FindObjectOfType<Player>();
     }
-    // private void OnEnable() {
-    //      player.gameObject.SetActive(false);
-    // }
+
 
     public void ExitBtn()
     {
@@ -19,5 +18,5 @@ public class WeaponShop : UICanvas
         UIManager.Instance.OpenUI<MainMenu>();
         Close();
     }
-    
+
 }

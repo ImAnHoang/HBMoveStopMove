@@ -8,17 +8,10 @@ public class ShopWeapon : UICanvas
     [SerializeField] GameObject selectBtn;
     [SerializeField] Text MoneyTxt;
 
-    private void Update()
-    {
-        
-    }
     
-    public void SelectBtn() // Nut chon
+    public void SelectBtn() // Choose BTN
     {
         Present.Instance.SelectItem();
-        // Present.Instance.UpdateBtn();
-    
-        // Present.Instance.Equipped.gameObject.SetActive(true);
     }
     public void MoneyBtn()
     {

@@ -5,78 +5,73 @@ using UnityEngine.UI;
 
 public class SkinShop : UICanvas
 {
-   [SerializeField] List<GameObject> ListShopItem;
-   public static ESkinType selectType;
-   public Text moneyTxt;
+    [SerializeField] List<GameObject> ListShopItem;
+    public static ESkinType selectType;
+    public Text moneyTxt;
 
-   public Button MoneyBtn;
+    public Button MoneyBtn;
     public Button SelectButton;
     public Button EquippedBtn;
-   
-    private void Start() {
-        UpdateSelect((int) ESkinType.Hat);
-        PresentSkin.Instance.UpdatePresent((int)ESkinType.Hat , 0);
+
+    private void Start()
+    {
+        UpdateSelect((int)ESkinType.Hat);
+        PresentSkin.Instance.UpdatePresent((int)ESkinType.Hat, 0);
     }
 
-    
+
     public void CloseBtn()
     {
-        GameManagerr.Instance.ChangeState(EGameState.GamePlay);
-        UIManager.Instance.OpenUI<GamePlayUI>();
+        GameManagerr.Instance.ChangeState(EGameState.MainMenu);
+        UIManager.Instance.OpenUI<MainMenu>();
         Close();
     }
     public void HatBtn()
     {
         selectType = ESkinType.Hat;
-        UpdateSelect((int) ESkinType.Hat);
+        UpdateSelect((int)ESkinType.Hat);
         PresentSkin.Instance.currentType = ESkinType.Hat;
-        PresentSkin.Instance.UpdatePresent((int)ESkinType.Hat , 0);
-        
+        PresentSkin.Instance.UpdatePresent((int)ESkinType.Hat, 0);
+
     }
 
-     public void PantBtn()
+    public void PantBtn()
     {
         selectType = ESkinType.Pant;
-        UpdateSelect((int) ESkinType.Pant);
-        PresentSkin.Instance.currentType =  ESkinType.Pant;
-        PresentSkin.Instance.UpdatePresent((int)ESkinType.Pant , 0);
+        UpdateSelect((int)ESkinType.Pant);
+        PresentSkin.Instance.currentType = ESkinType.Pant;
+        PresentSkin.Instance.UpdatePresent((int)ESkinType.Pant, 0);
     }
 
     public void ShieldBtn()
     {
         selectType = ESkinType.Shield;
-        UpdateSelect((int) ESkinType.Shield);
-        PresentSkin.Instance.currentType =  ESkinType.Shield;
-        PresentSkin.Instance.UpdatePresent((int)ESkinType.Shield , 0);
+        UpdateSelect((int)ESkinType.Shield);
+        PresentSkin.Instance.currentType = ESkinType.Shield;
+        PresentSkin.Instance.UpdatePresent((int)ESkinType.Shield, 0);
     }
 
-     public void SetBtn()
+    public void SetBtn()
     {
         selectType = ESkinType.Skin;
-        UpdateSelect((int) ESkinType.Skin);
-        PresentSkin.Instance.currentType =  ESkinType.Skin;
-        PresentSkin.Instance.UpdatePresent((int)ESkinType.Skin , 0);
+        UpdateSelect((int)ESkinType.Skin);
+        PresentSkin.Instance.currentType = ESkinType.Skin;
+        PresentSkin.Instance.UpdatePresent((int)ESkinType.Skin, 0);
     }
 
     public void SelectBtn()
     {
-        // PresentSkin.Instance.SpawnItem();
+
 
         PresentSkin.Instance.SelectItem();
         EquippedActivate();
 
-        // int cost = PresentSkin.Instance.GetCostItem();
-        // DataPlayerController.SubCoin(cost);
-
-        // GameManagerr.Instance.ChangeState(EGameState.MainMenu);
-        // UIManager.Instance.OpenUI<MainMenu>();
-        // Close();
     }
 
     public void MoneyButton()
     {
-        int cost  = ((int) PresentSkin.Instance.currentType+1) *100 + PresentSkin.Instance.currentIndex*10;
-        if(DataPlayerController.IsEnoughMoney(cost))
+        int cost = ((int)PresentSkin.Instance.currentType + 1) * 100 + PresentSkin.Instance.currentIndex * 10;
+        if (DataPlayerController.IsEnoughMoney(cost))
         {
             PresentSkin.Instance.MoneyItem();
             SelectActivate();
@@ -91,9 +86,9 @@ public class SkinShop : UICanvas
     }
     void UpdateSelect(int j)
     {
-        for(int i =0; i<ListShopItem.Count; i++)
+        for (int i = 0; i < ListShopItem.Count; i++)
         {
-            if(i == j)
+            if (i == j)
             {
                 ListShopItem[i].SetActive(true);
             }
@@ -104,10 +99,10 @@ public class SkinShop : UICanvas
         }
     }
 
-   
+
     public void MoneyActivate()
     {
-        
+
         MoneyBtn.gameObject.SetActive(true);
         SelectButton.gameObject.SetActive(false);
         EquippedBtn.gameObject.SetActive(false);
@@ -115,17 +110,17 @@ public class SkinShop : UICanvas
 
     public void SelectActivate()
     {
-        
+
         MoneyBtn.gameObject.SetActive(false);
         SelectButton.gameObject.SetActive(true);
         EquippedBtn.gameObject.SetActive(false);
     }
     public void EquippedActivate()
     {
-        
+
         MoneyBtn.gameObject.SetActive(false);
         SelectButton.gameObject.SetActive(false);
         EquippedBtn.gameObject.SetActive(true);
     }
-    
+
 }

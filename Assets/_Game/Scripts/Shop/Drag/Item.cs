@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    
+
     public bool IsDestroyOnDespawn = false;
-    
+
 
     public virtual void Activate()
     {
         gameObject.SetActive(true);
-            //anim
+
     }
 
     public virtual void DeActivate()
     {
         gameObject.SetActive(false);
-        if(IsDestroyOnDespawn)
+        if (IsDestroyOnDespawn)
         {
             Destroy(gameObject);
         }

@@ -8,34 +8,36 @@ public class HatGenSkin : GenSkin
     private GameObject prefab;
     private GameObject Hat;
     private Dictionary<GameObject, GameObject> dictHat = new Dictionary<GameObject, GameObject>();
-    private  Transform HatTF;
-    
-    private void Awake() {
-         PresentSkin.Instance.listGenSkin[0]=this;
-         button.onClick.AddListener(Select);
-         player= FindObjectOfType<Player>();
-         if(player!= null)
-         {
-            HatTF = player.HatTF;
-         }
-    }
-    private void Start() {
-        indexType = (int) ESkinType.Hat;
-        PresentSkin.Instance.currentSkin = this;
-        
-    }
-   public override void SpawnSkin(ESkinType iType, int indexItem)
-   {
-       
-        prefab = hatDatas.GetPrefab(indexItem);
-        if(prefab!=null)
+    private Transform HatTF;
+
+    private void Awake()
+    {
+        PresentSkin.Instance.listGenSkin[0] = this;
+        button.onClick.AddListener(Select);
+        player = FindObjectOfType<Player>();
+        if (player != null)
         {
-            if(HatTF!=null)
+            HatTF = player.HatTF;
+        }
+    }
+    private void Start()
+    {
+        indexType = (int)ESkinType.Hat;
+        PresentSkin.Instance.currentSkin = this;
+
+    }
+    public override void SpawnSkin(ESkinType iType, int indexItem)
+    {
+
+        prefab = hatDatas.GetPrefab(indexItem);
+        if (prefab != null)
+        {
+            if (HatTF != null)
             {
                 RefeshObj(HatTF);
             }
-            
-            if(dictHat.ContainsKey(prefab))
+
+            if (dictHat.ContainsKey(prefab))
             {
                 dictHat[prefab].SetActive(true);
             }
@@ -45,17 +47,16 @@ public class HatGenSkin : GenSkin
                 dictHat.Add(prefab, Hat);
             }
         }
-   }
+    }
 
-   public override void DespawnSkin(ESkinType iType, int indexItem)
-   {
+    public override void DespawnSkin(ESkinType iType, int indexItem)
+    {
         prefab = hatDatas.GetPrefab(indexItem);
         dictHat[prefab].SetActive(false);
-   }
+    }
 
-   public override void Select()
-   {
-    Debug.Log("Hat");
-    PresentSkin.Instance.currentSkin = this;
-   }
+    public override void Select()
+    {
+        PresentSkin.Instance.currentSkin = this;
+    }
 }
